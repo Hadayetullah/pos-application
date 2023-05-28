@@ -1,3 +1,3 @@
 export const reducer = () => {
-  return;
+  return 0;
 };
