@@ -11,9 +11,13 @@ import {
     faMagnifyingGlass,
     faQrcode,
     faCircleMinus,
-    faDollarSign
+    faDollarSign,
+    faGear,
+    faHandBackFist,
+    faPercent,
+    faMoneyBill1Wave
 } from '@fortawesome/free-solid-svg-icons'
-import { faPenToSquare, faTrashCan } from '@fortawesome/free-regular-svg-icons'
+import { faCircleXmark, faPenToSquare, faTrashCan } from '@fortawesome/free-regular-svg-icons'
 // import { faTwitter, faFontAwesome } from '@fortawesome/free-brands-svg-icons'
 
 
@@ -23,7 +27,7 @@ const POS = () => {
         <div className="home grid">
             <div className="pos grid">
                 <div className="pos__left">
-                    <nav className="left__nav__top">
+                    <nav className="left__nav__top grid">
                         <FontAwesomeIcon icon={faBars} className="pos__left__bar" />
                         <ul className="left__nav__top-items">
                             <li className='left__nav__top-item'>
@@ -148,7 +152,78 @@ const POS = () => {
                         </div>
                     </div>
 
-                    <div className="left__bottom"></div>
+                    <footer className="left__bottom">
+                        <div className="products__calculation__top">
+                            <div>
+                                <span>Sub Total</span>
+                                <span className="price__title">
+                                    <FontAwesomeIcon icon={faDollarSign} className='total__price-dolar' />0.00
+                                </span>
+                            </div>
+                            <div>
+                                <span>TAX</span>
+                                <span className="price__title">
+                                    <FontAwesomeIcon icon={faDollarSign} className='total__price-dolar' />0.00
+                                </span>
+                            </div>
+                            <div>
+                                <span>Shipping</span>
+                                <span className="price__title">
+                                    <FontAwesomeIcon icon={faDollarSign} className='total__price-dolar' />0.00
+                                </span>
+                            </div>
+                            <div>
+                                <span>Discount on Cart</span>
+                                <span className="price__title">
+                                    <FontAwesomeIcon icon={faDollarSign} className='total__price-dolar' />0.00
+                                </span>
+                            </div>
+                        </div>
+
+                        <div className="products__calculation__bottom">
+                            <span>Products Count ()</span>
+                            <div className="total__price">
+                                    <span>Total</span>
+                                    <span>
+                                        <FontAwesomeIcon icon={faDollarSign} className='total__price-dolar' />0.00
+                                    </span>
+                                </div>
+                            </div>
+                        <div className="products__total"></div>
+
+                        <ul className="left__bottom__footer">
+                            <li className='left__bottom__footer-nav'>
+                                <FontAwesomeIcon icon={faCircleXmark} className='left__nav__top-icon' />
+                                <span>
+                                    Cancel
+                                </span>
+                            </li>
+                            <li className='left__bottom__footer-nav'>
+                                <FontAwesomeIcon icon={faGear} className='left__nav__top-icon' />
+                                <span>
+                                    Settings
+                                </span>
+                            </li>
+                            <li className='left__bottom__footer-nav'>
+                                <FontAwesomeIcon icon={faHandBackFist} className='left__nav__top-icon' />
+                                <span>
+                                    Hold
+                                </span>
+                            </li>
+                            <li className='left__bottom__footer-nav'>
+                            <FontAwesomeIcon icon={faPercent} className='left__nav__top-icon' />
+                                <span>
+                                    Discount
+                                </span>
+                            </li>
+                            <li className='left__bottom__footer-nav'>
+                                <FontAwesomeIcon icon={faMoneyBill1Wave} className='left__nav__top-icon' />
+                                <span>
+                                    Pay Now
+                                </span>
+                            </li>
+                        </ul>
+                    </footer>
                 </div>
 
                 {/* POS RIGHT */}
@@ -162,7 +237,8 @@ const POS = () => {
                 </div>
             </div>
 
-            <div className="pos__right__bar"></div>
+            <div className="pos__right__bar">
+            </div>
         </div>
     </div>
   )
