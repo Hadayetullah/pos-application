@@ -1,6 +1,6 @@
 
 
-import { navItems, Products } from '../redux/data/Products'
+import { navItems } from '../redux/data/Products'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { 
     faBars, 
@@ -25,30 +25,39 @@ import { faCircleXmark, faPenToSquare, faTrashCan } from '@fortawesome/free-regu
 import DisplayNavItems from './posChilds/DisplayNavItems'
 import CategoryItems from './posChilds/CategoryItems'
 
+import { createProductList } from '../redux/actionCreators'
+
 import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
 
 const POS = () => {
 
     const [itemCount, setItemCount] = useState(0);
+    const dispatch = useDispatch()
+    const products = useSelector(state => state.products);
 
 
     useEffect(() => {
-        handleResize();
+        dispatch(createProductList("all"));
         window.addEventListener('resize', handleResize);
         return () => {
-          window.removeEventListener('resize', handleResize);
+            window.removeEventListener('resize', handleResize);
         };
-      }, []);
+    }, []);
     
 
-    const handleResize = () =>{
-        let items = document.querySelector(".pos__right__bottom").clientWidth;
-        setItemCount((Math.floor(items/170)));
-    }
+    useEffect(()=>{
+        handleResize();
+    },[itemCount])
 
-    // console.log(itemCount)
     
+
+    const handleResize = () => {
+        let items = Math.floor((document.querySelector(".pos__right__bottom").clientWidth)/ 170);
+        setItemCount((items));
+    };
+
 
   return (
     <div>
@@ -281,18 +290,16 @@ const POS = () => {
                         <div 
                             className="categories grid"
                             style={{
-                                gridTemplateColumns: `repeat(${itemCount},auto)`,
+                                gridTemplateColumns: `repeat(${itemCount}, auto)`,
                             }}
                         >
                             {
-                                Products.map((item, i)=>{
+                                products.map((item, i)=>{
                                     return <CategoryItems item={item} key={i} />
                                 })
                             }
                         </div>
                     </div>
-
-                    <div className='fix__overflow'></div>
                 </div>
             </div>
 

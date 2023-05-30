@@ -4,21 +4,16 @@ import { faDollarSign } from '@fortawesome/free-solid-svg-icons'
 
 import "./CategoryItems.css"
 const CategoryItems = ({item}) => {
-
-    let data = item.data.map((itemData, i)=>{
-      return(
-        <div className="item__details" key={i}>
-          <img src={`${itemData.img}`} alt={`${itemData.title}`} className="item__img" />
-          <span className="item__price">
-            <FontAwesomeIcon icon={faDollarSign} />
-            {itemData.price}
-          </span>
-          <span className="item__title">{itemData.title}</span>
-        </div>
-      )
-    })
-
-    return data;
+    return(
+      <div className="item__details">
+        <img src={`${item.img}`} alt={`${item.title}`} className="item__img" />
+        <span className="item__price">
+          <FontAwesomeIcon icon={faDollarSign} />
+          {item.price}
+        </span>
+        <span className="item__title">{item.title}</span>
+      </div>
+    )
 }
 
 export default CategoryItems;

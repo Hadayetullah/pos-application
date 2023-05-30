@@ -1,10 +1,17 @@
-import { Products } from "./data/Products";
+import * as actionTypes from "./actionTypes";
+const productState = {
+  products: [],
+};
 
-// const products = {
-//   navItems: navItems,
-//   products: Products,
-// };
+export const reducer = (state = productState, action) => {
+  switch (action.type) {
+    case actionTypes.CRATE_PRODUCT_LIST:
+      return {
+        ...state,
+        products: action.payload,
+      };
 
-export const reducer = (state = Products) => {
-  return state;
+    default:
+      return state;
+  }
 };

@@ -446,10 +446,11 @@ img {
 	color: #5C5C5C;
 }
 .categories {
+	/* width: 100%; */
 	gap: 1rem;
 	margin: 0 15px;
 	overflow: auto;
-	height: calc(100vh - 173px);
+	height: calc(100vh - 190px);
 	padding-bottom: 20px;
 }
 

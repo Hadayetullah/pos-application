@@ -1,3 +1,12 @@
+import * as actionTypes from "./actionTypes";
 import { Products } from "./data/Products";
 
-const createProductList = () => {};
+export const createProductList = (name) => {
+  if (name === "all") {
+    let productList = Products.flatMap((item) => item.data);
+    return {
+      type: actionTypes.CRATE_PRODUCT_LIST,
+      payload: productList,
+    };
+  }
+};
