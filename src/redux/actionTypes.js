@@ -1,0 +1,1 @@
+export const CRATE_PRODUCT_LIST = "CRATE_PRODUCT_LIST";

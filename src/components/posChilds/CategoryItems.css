@@ -1,0 +1,25 @@
+.item__details {
+	width: 100%;
+	padding: 5px;
+	border: 1px solid #999;
+	border-radius: 3px;
+	display: grid;
+	grid-template-rows: 1fr;
+	align-content: center;
+	align-items: center;
+	justify-content: center;
+	/* height: 240px; */
+	text-align: center;
+}
+/* .item__img {} */
+.item__price {
+	font-size: 18px;
+	font-weight: 600;
+	color: #505050;
+}
+.item__title {
+	overflow: hidden;
+	white-space: nowrap;
+	color: #4E4E4E;
+	font-size: 14px;
+}

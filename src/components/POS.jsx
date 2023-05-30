@@ -1,5 +1,6 @@
 
 
+import { navItems, Products } from '../redux/data/Products'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { 
     faBars, 
@@ -15,13 +16,40 @@ import {
     faGear,
     faHandBackFist,
     faPercent,
-    faMoneyBill1Wave
+    faMoneyBill1Wave,
+    faEllipsisVertical
 } from '@fortawesome/free-solid-svg-icons'
 import { faCircleXmark, faPenToSquare, faTrashCan } from '@fortawesome/free-regular-svg-icons'
 // import { faTwitter, faFontAwesome } from '@fortawesome/free-brands-svg-icons'
 
+import DisplayNavItems from './posChilds/DisplayNavItems'
+import CategoryItems from './posChilds/CategoryItems'
+
+import { useEffect, useState } from 'react'
+
 
 const POS = () => {
+
+    const [itemCount, setItemCount] = useState(0);
+
+
+    useEffect(() => {
+        handleResize();
+        window.addEventListener('resize', handleResize);
+        return () => {
+          window.removeEventListener('resize', handleResize);
+        };
+      }, []);
+    
+
+    const handleResize = () =>{
+        let items = document.querySelector(".pos__right__bottom").clientWidth;
+        setItemCount((Math.floor(items/170)));
+    }
+
+    // console.log(itemCount)
+    
+
   return (
     <div>
         <div className="home grid">
@@ -230,10 +258,41 @@ const POS = () => {
                 <div className="pos__right">
                     <nav className="right__nav__top">
                         <FontAwesomeIcon icon={faMagnifyingGlass} className="right__nav__top-search" />
-                        <input type="text" className="right__nav__top-input" />
+                        <input type="text" className="right__nav__top-input" placeholder='Search Products...' />
                         <FontAwesomeIcon icon={faQrcode} className="right__nav__top-qr" />
                     </nav>
-                    <nav className="right__nav__bottom"></nav>
+
+                    <div className="pos__right__bottom">
+                        <div className="pos__right__bottom__navsection grid">
+                            <nav 
+                                className="right__nav__bottom grid"
+                                style={{
+                                    gridTemplateColumns: `repeat(${itemCount}, auto)`,
+                                }}
+                            >
+                                <DisplayNavItems navItems={navItems} itemCount={itemCount} />
+                            </nav>
+
+                            <div className="right__nav__bottom-menu">
+                                <FontAwesomeIcon icon={faEllipsisVertical} />
+                            </div>
+                        </div>
+
+                        <div 
+                            className="categories grid"
+                            style={{
+                                gridTemplateColumns: `repeat(${itemCount},auto)`,
+                            }}
+                        >
+                            {
+                                Products.map((item, i)=>{
+                                    return <CategoryItems item={item} key={i} />
+                                })
+                            }
+                        </div>
+                    </div>
+
+                    <div className='fix__overflow'></div>
                 </div>
             </div>
 

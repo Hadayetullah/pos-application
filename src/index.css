@@ -73,11 +73,6 @@
 }
 
 /*========== Button ==========*/
-.nav__btns {
-	display: flex;
-	align-items: center;
-	margin-left: auto;
-}
 
 
 /*==================== BASE ====================*/
@@ -146,7 +141,7 @@ img {
 /*============== POS LEFT ==============*/
 .pos__left {
 	max-width: 100%;
-	min-width: 620px;
+	min-width: 610px;
 	background-color: #fff;
 }
 .left__nav__top {
@@ -416,8 +411,8 @@ img {
 	border: none;
 	background-color: transparent;
 	outline: none;
-	width: 450px;
-    resize: none;
+	width: 80%;
+	resize: none;
 }
 .right__nav__top-qr {
 	float: right;
@@ -427,8 +422,39 @@ img {
 	height: 35px;
 }
 
+.pos__right__bottom {
+	width: 100%;
+	height: calc(100vh - 103px);
+	/* background: rebeccapurple; */
+	border-left: 1px solid #999;
+}
+.pos__right__bottom__navsection {
+	grid-template-columns: 1fr max-content;
+	align-items: center;
+	/* border-bottom: 1px solid #D4D4D4; */
+	margin-bottom: 10px;
+	/* box-shadow: 0px -51px 0px 0px #999; */
+}
+.right__nav__bottom {
+	gap: .5rem;
+	padding: 15px;
+}
+.right__nav__bottom-menu {
+	/* width: 10px; */
+	font-size: 35px;
+	padding: 5px 15px 0px 0;
+	color: #5C5C5C;
+}
+.categories {
+	gap: 1rem;
+	margin: 0 15px;
+	overflow: auto;
+	height: calc(100vh - 173px);
+	padding-bottom: 20px;
+}
 
-/*============== POS LEFT ==============*/
+
+/*============== POS RIGHT ==============*/
 .pos__right__bar {
     height: 100vh;
     border-left: 1px solid #999;
