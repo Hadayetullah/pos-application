@@ -1,0 +1,33 @@
+
+.body__left__selected__product {
+	display: flex;
+	flex-direction: row;
+	height: 45px;
+	align-items: center;
+}
+.init__icon {
+	margin: 10px 5px;
+}
+.selected__product__middle {
+	/* background-color: #999; */
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	border: 1px solid #999;
+	height: 45px;
+	border-bottom: none;
+} 
+.munus {
+	font-size: 25px;
+    color: #727272;
+}
+.plus {
+    font-size: 25px;
+    color: #727272;
+}
+.last__icon {
+	margin: 10px 5px;
+	font-size: 20px;
+    color: #B42A2B;
+}

@@ -29,13 +29,14 @@ import { createProductList } from '../redux/actionCreators'
 
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import CurrentOrderList from './posChilds/CurrentOrderList'
 
 
 const POS = () => {
 
     const [itemCount, setItemCount] = useState(0);
     const dispatch = useDispatch()
-    const products = useSelector(state => state.products);
+    const state = useSelector(state => state);
 
 
     useEffect(() => {
@@ -126,7 +127,12 @@ const POS = () => {
                         </header>
 
                         <div className="body__left__content">
-                            <div className="body__left__selected__product">
+                            {
+                                state.currentOrder.map((item, i, orderList)=> {
+                                    return <CurrentOrderList item={item} index={i} orderList={orderList} key={i} />
+                                })
+                            }
+                            {/* <div className="body__left__selected__product">
                                 <FontAwesomeIcon icon={faPenToSquare} className='init__icon' />
                                 <div className="selected__product__middle">
                                     <div className="body__left__items">
@@ -185,7 +191,7 @@ const POS = () => {
                                     </div>
                                 </div>
                                 <FontAwesomeIcon icon={faTrashCan} className='last__icon' />
-                            </div>
+                            </div> */}
                         </div>
                     </div>
 
@@ -294,7 +300,7 @@ const POS = () => {
                             }}
                         >
                             {
-                                products.map((item, i)=>{
+                                state.products.map((item, i)=>{
                                     return <CategoryItems item={item} key={i} />
                                 })
                             }

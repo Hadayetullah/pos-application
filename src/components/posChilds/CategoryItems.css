@@ -10,7 +10,8 @@
 	justify-content: center;
 	/* height: 240px; */
 	text-align: center;
-	max-height: 312px;
+	/* max-height: 100%; */
+	max-height: 330px;
 }
 /* .item__img {} */
 .item__price {
