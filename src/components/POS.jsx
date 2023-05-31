@@ -45,7 +45,7 @@ const POS = () => {
             window.removeEventListener('resize', handleResize);
         };
     }, []);
-    
+
 
     useEffect(()=>{
         handleResize();
@@ -279,7 +279,7 @@ const POS = () => {
                                     gridTemplateColumns: `repeat(${itemCount}, auto)`,
                                 }}
                             >
-                                <DisplayNavItems navItems={navItems} itemCount={itemCount} />
+                                <DisplayNavItems createProductList={createProductList} navItems={navItems} itemCount={itemCount} />
                             </nav>
 
                             <div className="right__nav__bottom-menu">

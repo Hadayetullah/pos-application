@@ -4,12 +4,13 @@
 	border: 1px solid #999;
 	border-radius: 3px;
 	display: grid;
-	grid-template-rows: 1fr;
+	/* grid-template-rows: 1fr; */
 	align-content: center;
 	align-items: center;
 	justify-content: center;
 	/* height: 240px; */
 	text-align: center;
+	max-height: 312px;
 }
 /* .item__img {} */
 .item__price {
