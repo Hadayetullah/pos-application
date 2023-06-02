@@ -1,2 +1,3 @@
 export const CRATE_PRODUCT_LIST = "CRATE_PRODUCT_LIST";
 export const CURRENT_ORDER = "CURRENT_ORDER";
+export const REMOVE_ITEM = "REMOVE_ITEM";

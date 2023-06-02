@@ -8,16 +8,12 @@ import {
 import { faPenToSquare, faTrashCan } from '@fortawesome/free-regular-svg-icons'
 
 import "./CurrentOrderList.css";
-
 import { useDispatch } from 'react-redux';
 
 
-
-const CurrentOrderList = ({item, index, orderList}) => {
-
-    // console.log(item)
-
-    // const dispatch = useDispatch();
+const CurrentOrderList = ({item, index, orderList, removeItem}) => {
+    
+    const dispatch = useDispatch()
     
   return (
     <div className="body__left__selected__product">
@@ -34,19 +30,19 @@ const CurrentOrderList = ({item, index, orderList}) => {
             </div>
             <div className="body__left__unitprice">
                 <FontAwesomeIcon icon={faDollarSign} style={{color: "#727272"}} />
-                <span>{item.price}</span>
+                <span>{parseFloat(item.price).toFixed(2)}</span>
             </div>
             <div className="body__left__qty">
                 <FontAwesomeIcon icon={faCircleMinus} className='munus' />
-                <span>{1}</span>
+                <span>{item.qty}</span>
                 <FontAwesomeIcon icon={faCirclePlus} className='plus' />
             </div>
             <div className="body__left__totalprice">
                 <FontAwesomeIcon icon={faDollarSign} style={{color: "#727272"}} />
-                <span>{item.price}</span>
+                <span>{parseFloat(item.qty * item.price).toFixed(2)}</span>
             </div>
         </div>
-        <FontAwesomeIcon icon={faTrashCan} className='last__icon' />
+        <FontAwesomeIcon icon={faTrashCan} className='last__icon' onClick={()=> dispatch(removeItem(item))} />
     </div>
   )
 }

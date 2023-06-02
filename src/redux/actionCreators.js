@@ -1,32 +1,38 @@
 import * as actionTypes from "./actionTypes";
 import { Products } from "./data/Products";
 
+const formatProductListObj = (item) => {
+  return item.data.map((childItem) => ({
+    title: item.title,
+    category: item.category,
+    subtitle: item.subtitle,
+    subcategory: item.subcategory,
+    productTitle: childItem.title,
+    price: childItem.price,
+    img: childItem.img,
+    qty: childItem.qty,
+    stock: childItem.stock,
+  }));
+};
+
 export const createProductList = (name) => {
   if (name === "all") {
     // let productList = Products.flatMap((item) => item.data);
-    let productList = Products.flatMap((item) =>
-      item.data.map((childItem) => ({
-        title: item.title,
-        category: item.category,
-        subtitle: item.subtitle,
-        subcategory: item.subcategory,
-        productTitle: childItem.title,
-        price: childItem.price,
-        img: childItem.img,
-        stock: childItem.stock,
-      }))
-    );
+    let productList = Products.flatMap((item) => formatProductListObj(item));
+
     return {
       type: actionTypes.CRATE_PRODUCT_LIST,
       payload: productList,
     };
   } else {
-    let categoryData = Products.filter(
-      (item) => item.category === name
-    ).flatMap((item) => item.data);
+    let categoryData = Products.filter((item) => item.category === name);
+    let productList = categoryData.flatMap((item) =>
+      formatProductListObj(item)
+    );
+
     return {
       type: actionTypes.CRATE_PRODUCT_LIST,
-      payload: categoryData,
+      payload: productList,
     };
   }
 };
@@ -40,3 +46,8 @@ export const currentOrder = (product) => {
     payload: product,
   };
 };
+
+export const removeItem = (item) => ({
+  type: actionTypes.REMOVE_ITEM,
+  payload: item,
+});
