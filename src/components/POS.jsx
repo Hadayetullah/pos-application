@@ -283,11 +283,6 @@ const POS = () => {
                     </div>
                 </div>
             </div>
-
-            <div className="pos__right__bar">
-            <FontAwesomeIcon icon={faMessage} className='pos__right__bar-message' />
-            <FontAwesomeIcon icon={faFlag} className='pos__right__bar-report' />
-            </div>
         </div>
     </div>
   )

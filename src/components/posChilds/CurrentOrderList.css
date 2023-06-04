@@ -2,7 +2,7 @@
 .body__left__selected__product {
 	display: flex;
 	flex-direction: row;
-	height: 45px;
+	height: auto;
 	align-items: center;
 }
 .init__icon {
@@ -15,7 +15,7 @@
 	flex-direction: row;
 	align-items: center;
 	border: 1px solid #999;
-	height: 45px;
+	height: auto;
 	border-bottom: none;
 } 
 .munus {
