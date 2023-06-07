@@ -19,7 +19,8 @@ import {
     faMoneyBill1Wave,
     faEllipsisVertical,
     faMessage,
-    faFlag
+    faFlag,
+    faAnglesUp
 } from '@fortawesome/free-solid-svg-icons'
 import { faCircleXmark, faPenToSquare, faTrashCan } from '@fortawesome/free-regular-svg-icons'
 // import { faTwitter, faFontAwesome } from '@fortawesome/free-brands-svg-icons'
@@ -38,6 +39,8 @@ const POS = () => {
 
     const [itemCount, setItemCount] = useState(0);
     const [name, setName] = useState(false);
+    const [activeSection, setActiveSection] = useState(false);
+
     const dispatch = useDispatch()
     const state = useSelector(state => state);
 
@@ -47,6 +50,7 @@ const POS = () => {
     // useEffect(()=> {
         
     // }, []);
+    // console.log(activeSection)
 
 
     useEffect(() => {
@@ -71,7 +75,12 @@ const POS = () => {
 
     const handleResize = (e) => {
         let items = Math.floor((document.querySelector(".pos__right__bottom").clientWidth)/ 170);
-        setItemCount((items));
+        if(items <=2) {
+            setItemCount((items + 1));
+        } else {
+            setItemCount((items));
+        }
+        // console.log(window.innerWidth)
     };
 
     const handleClassName = () => {
@@ -84,12 +93,50 @@ const POS = () => {
     }
 
 
+    const footer = (
+        <ul className={`${activeSection === true ? "translate__footer" : ""} left__bottom__footer`}>
+            <li className='left__bottom__footer-nav'>
+                <FontAwesomeIcon icon={faCircleXmark} className='left__nav__top-icon' />
+                <span>
+                    Cancel
+                </span>
+            </li>
+            <li className='left__bottom__footer-nav'>
+                <FontAwesomeIcon icon={faGear} className='left__nav__top-icon' />
+                <span>
+                    Settings
+                </span>
+            </li>
+            <li className='left__bottom__footer-nav'>
+                <FontAwesomeIcon icon={faHandBackFist} className='left__nav__top-icon' />
+                <span>
+                    Hold
+                </span>
+            </li>
+            <li className='left__bottom__footer-nav'>
+            <FontAwesomeIcon icon={faPercent} className='left__nav__top-icon' />
+                <span>
+                    Discount
+                </span>
+            </li>
+            <li className='responsive__visible'></li>
+            <li className='left__bottom__footer-nav'>
+                <FontAwesomeIcon icon={faMoneyBill1Wave} className='left__nav__top-icon' />
+                <span>
+                    Pay Now
+                </span>
+            </li>
+        </ul>
+    )
+
+
   return (
     <div>
         <div className="home grid">
-            <div className={`${name ? "responsive__scroll" : ""}`}>
+            {/* <div className={`${name ? "responsive__scroll" : ""}`}> */}
                 <div className="pos grid">
-                    <div className="pos__left">
+                    {/* <div className={`pos__left`}> */}
+                    <div className={`pos__left ${activeSection === true ? "pos__left-deactive" : ""}`}>
                         <nav className="left__nav__top grid">
                             <FontAwesomeIcon icon={faBars} className="pos__left__bar" />
                             <ul className="left__nav__top-items">
@@ -207,44 +254,16 @@ const POS = () => {
                                 </div>
                             </div>
 
-                            <ul className="left__bottom__footer">
-                                <li className='left__bottom__footer-nav'>
-                                    <FontAwesomeIcon icon={faCircleXmark} className='left__nav__top-icon' />
-                                    <span>
-                                        Cancel
-                                    </span>
-                                </li>
-                                <li className='left__bottom__footer-nav'>
-                                    <FontAwesomeIcon icon={faGear} className='left__nav__top-icon' />
-                                    <span>
-                                        Settings
-                                    </span>
-                                </li>
-                                <li className='left__bottom__footer-nav'>
-                                    <FontAwesomeIcon icon={faHandBackFist} className='left__nav__top-icon' />
-                                    <span>
-                                        Hold
-                                    </span>
-                                </li>
-                                <li className='left__bottom__footer-nav'>
-                                <FontAwesomeIcon icon={faPercent} className='left__nav__top-icon' />
-                                    <span>
-                                        Discount
-                                    </span>
-                                </li>
-                                <li className='responsive__visible'></li>
-                                <li className='left__bottom__footer-nav'>
-                                    <FontAwesomeIcon icon={faMoneyBill1Wave} className='left__nav__top-icon' />
-                                    <span>
-                                        Pay Now
-                                    </span>
-                                </li>
-                            </ul>
+                            { footer }
                         </footer>
                     </div>
 
+                    <div className="responsive__footer__navigation">
+                        { footer }
+                    </div>
+
                     {/* POS RIGHT */}
-                    <div className="pos__right">
+                    <div className={`pos__right ${activeSection === true ? "pos__right-active": ""}`}>
                         <nav className="right__nav__top">
                             <FontAwesomeIcon icon={faMagnifyingGlass} className="right__nav__top-search" />
                             <input type="text" className="right__nav__top-input" placeholder='Search Products...' />
@@ -282,6 +301,10 @@ const POS = () => {
                         </div>
                     </div>
                 </div>
+            {/* </div> */}
+
+            <div onClick={()=> setActiveSection(!activeSection)} className="toggle__view">
+                <FontAwesomeIcon icon={faAnglesUp} className='angle__up' />
             </div>
         </div>
     </div>
