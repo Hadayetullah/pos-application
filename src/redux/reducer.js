@@ -76,6 +76,7 @@ export const reducer = (state = productState, action) => {
           increaseOrderQty.qty = increaseOrderQty.qty + 1;
           return {
             ...state,
+            isProductAvailable: null,
             totalQty: state.totalQty + 1,
             totalPrice: state.totalPrice + orderItem.price,
             ...state.products.splice(productObjIndex, 1, increaseQty),
@@ -88,6 +89,7 @@ export const reducer = (state = productState, action) => {
         } else {
           return {
             ...state,
+            isProductAvailable: null,
             totalQty: state.totalQty + orderItem.qty,
             totalPrice: state.totalPrice + orderItem.price,
             ...state.products.splice(productObjIndex, 1, increaseQty),
@@ -120,6 +122,12 @@ export const reducer = (state = productState, action) => {
           returnItemToProduct
         ),
         ...state.currentOrder.splice(getCurrentOrderIndex(item), 1),
+      };
+
+    case actionTypes.CLOSE_MODAL:
+      return {
+        ...state,
+        isProductAvailable: null,
       };
 
     default:

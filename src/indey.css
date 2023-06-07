@@ -451,6 +451,64 @@ img {
 }
 
 
+/* POS Modal */
+.pos__modal {
+    /* position: relative; */
+    /* width: 300px;
+    height: 150px; */
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* padding: 2rem 1rem; */
+    z-index: 100;
+}
+.pos__modal-content {
+    position: relative;
+    display: flex;
+    background-color: #fff;
+    height: 180px;
+    width: 350px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+}
+.pos__modal-content {
+    font-size: 20px;
+	font-weight: 500;
+    color: #3B3B3B;
+}
+
+.pos__modal-cross {
+	position: absolute;
+	top: 1rem;
+	right: 1rem;
+	font-size: 25px;
+	cursor: pointer;
+    color: #3B3B3B;
+}
+.pos__modal-ok {
+	position: absolute;
+	bottom: .5rem;
+	/* left: 0; */
+	/* right: 0; */
+	/* width: 100px; */
+	padding: 5px 20px;
+	font-size: 20px;
+	outline: none;
+	/* border-left: 1px solid #999; */
+	box-shadow: none;
+	border-radius: 4px;
+	/* pointer-events: auto; */
+	cursor: pointer;
+	color: #3B3B3B;
+	font-weight: 500;
+}
 
 
 /* ************ TOGGLE ICON ************* */
@@ -459,7 +517,7 @@ img {
 	left: 50%;
 	right: 0;
 	bottom: 21%;
-	z-index: 1000;
+	z-index: 10;
 	width: 40px;
 	border-radius: 50px;
 	height: 40px;

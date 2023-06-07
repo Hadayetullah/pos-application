@@ -51,3 +51,7 @@ export const removeItem = (item) => ({
   type: actionTypes.REMOVE_ITEM,
   payload: item,
 });
+
+export const closeModal = () => ({
+  type: actionTypes.CLOSE_MODAL,
+});

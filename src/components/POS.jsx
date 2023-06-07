@@ -20,7 +20,8 @@ import {
     faEllipsisVertical,
     faMessage,
     faFlag,
-    faAnglesUp
+    faAnglesUp,
+    faXmark
 } from '@fortawesome/free-solid-svg-icons'
 import { faCircleXmark, faPenToSquare, faTrashCan } from '@fortawesome/free-regular-svg-icons'
 // import { faTwitter, faFontAwesome } from '@fortawesome/free-brands-svg-icons'
@@ -28,7 +29,7 @@ import { faCircleXmark, faPenToSquare, faTrashCan } from '@fortawesome/free-regu
 import DisplayNavItems from './posChilds/DisplayNavItems'
 import CategoryItems from './posChilds/CategoryItems'
 
-import { createProductList, currentOrder, removeItem } from '../redux/actionCreators'
+import { closeModal, createProductList, currentOrder, removeItem } from '../redux/actionCreators'
 
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -92,6 +93,20 @@ const POS = () => {
         }
     }
 
+    const posModal = (
+        <div className="pos__modal">
+            <div className="pos__modal-content">
+                <div className="pos__modal-cross">
+                    <FontAwesomeIcon icon={faXmark} onClick={()=> dispatch(closeModal())}/>
+                </div>
+
+                <span>{ state.isProductAvailable }</span>
+
+                <button className='pos__modal-ok' onClick={()=> dispatch(closeModal())}>OK</button>
+            </div>
+        </div>
+    )
+
 
     const footer = (
         <ul className={`${activeSection === true ? "translate__footer" : ""} left__bottom__footer`}>
@@ -128,6 +143,8 @@ const POS = () => {
             </li>
         </ul>
     )
+
+    // console.log(state.isProductAvailable)
 
 
   return (
@@ -307,6 +324,10 @@ const POS = () => {
                 <FontAwesomeIcon icon={faAnglesUp} className='angle__up' />
             </div>
         </div>
+
+        {
+            (state.isProductAvailable !==null ? posModal : <div></div>)
+        }
     </div>
   )
 }
