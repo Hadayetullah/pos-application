@@ -29,7 +29,14 @@ import { faCircleXmark, faPenToSquare, faTrashCan } from '@fortawesome/free-regu
 import DisplayNavItems from './posChilds/DisplayNavItems'
 import CategoryItems from './posChilds/CategoryItems'
 
-import { closeModal, createProductList, currentOrder, removeItem } from '../redux/actionCreators'
+import { 
+    closeModal, 
+    createProductList, 
+    currentOrder, 
+    decreaseCartItem, 
+    increaseCartItem, 
+    removeItem 
+} from '../redux/actionCreators'
 
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -223,9 +230,11 @@ const POS = () => {
                                                 item={item} 
                                                 index={i} 
                                                 orderList={orderList} 
-                                                removeItem={removeItem} 
+                                                removeItem={()=> dispatch(removeItem(item))} 
                                                 totalPrice={state.totalPrice}
                                                 key={i} 
+                                                decreaseCartItem={()=> dispatch(decreaseCartItem(item))}
+                                                increaseCartItem={()=> dispatch(increaseCartItem(item))}
                                             />
                                         )
                                     })

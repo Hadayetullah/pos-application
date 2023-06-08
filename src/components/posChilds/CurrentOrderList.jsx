@@ -11,9 +11,7 @@ import "./CurrentOrderList.css";
 import { useDispatch } from 'react-redux';
 
 
-const CurrentOrderList = ({item, index, orderList, removeItem}) => {
-    
-    const dispatch = useDispatch()
+const CurrentOrderList = ({item, index, orderList, removeItem, decreaseCartItem, increaseCartItem}) => {
     
   return (
     <div className="body__left__selected__product">
@@ -33,16 +31,16 @@ const CurrentOrderList = ({item, index, orderList, removeItem}) => {
                 <span>{parseFloat(item.price).toFixed(2)}</span>
             </div>
             <div className="body__left__qty">
-                <FontAwesomeIcon icon={faCircleMinus} className='munus' />
+                <FontAwesomeIcon icon={faCircleMinus} className='munus' onClick={decreaseCartItem} />
                 <span>{item.qty}</span>
-                <FontAwesomeIcon icon={faCirclePlus} className='plus' />
+                <FontAwesomeIcon icon={faCirclePlus} className='plus' onClick={increaseCartItem} />
             </div>
             <div className="body__left__totalprice">
                 <FontAwesomeIcon icon={faDollarSign} style={{color: "#727272"}} />
                 <span>{parseFloat(item.qty * item.price).toFixed(2)}</span>
             </div>
         </div>
-        <FontAwesomeIcon icon={faTrashCan} className='last__icon' onClick={()=> dispatch(removeItem(item))} />
+        <FontAwesomeIcon icon={faTrashCan} className='last__icon' onClick={removeItem} />
     </div>
   )
 }

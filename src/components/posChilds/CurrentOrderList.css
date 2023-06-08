@@ -22,10 +22,12 @@
 .munus {
 	font-size: 25px;
     color: #727272;
+	cursor: pointer;
 }
 .plus {
     font-size: 25px;
     color: #727272;
+	cursor: pointer;
 }
 .last__icon {
 	margin: 10px 5px;

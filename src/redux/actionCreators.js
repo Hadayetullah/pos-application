@@ -55,3 +55,13 @@ export const removeItem = (item) => ({
 export const closeModal = () => ({
   type: actionTypes.CLOSE_MODAL,
 });
+
+export const decreaseCartItem = (item) => ({
+  type: actionTypes.DECREASE_CART_ITEM,
+  payload: item,
+});
+
+export const increaseCartItem = (item) => ({
+  type: actionTypes.INCREASE_CART_ITEM,
+  payload: item,
+});
