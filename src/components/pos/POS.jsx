@@ -1,6 +1,6 @@
 
 
-import { navItems } from '../redux/data/Products'
+import { navItems } from '../../redux/data/Products'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { 
     faBars, 
@@ -28,6 +28,8 @@ import { faCircleXmark, faPenToSquare, faTrashCan } from '@fortawesome/free-regu
 
 import DisplayNavItems from './posChilds/DisplayNavItems'
 import CategoryItems from './posChilds/CategoryItems'
+import CurrentOrderList from './posChilds/CurrentOrderList'
+import CategoryModal from './posChilds/CategoryModal'
 
 import { 
     closeModal, 
@@ -36,11 +38,10 @@ import {
     decreaseCartItem, 
     increaseCartItem, 
     removeItem 
-} from '../redux/actionCreators'
+} from '../../redux/actionCreators'
 
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import CurrentOrderList from './posChilds/CurrentOrderList'
 
 
 const POS = () => {
@@ -48,11 +49,13 @@ const POS = () => {
     const [itemCount, setItemCount] = useState(0);
     const [name, setName] = useState(false);
     const [activeSection, setActiveSection] = useState(false);
+    const [categoryModalActive, setCategoryModalActive] = useState(false);
 
     const dispatch = useDispatch()
     const state = useSelector(state => state);
 
     // console.log(window.innerWidth)
+    // console.log(state.allProductsData)
 
 
     // useEffect(()=> {
@@ -114,41 +117,55 @@ const POS = () => {
         </div>
     )
 
+    const handleCategoryModal = () => {
+        setCategoryModalActive(item=> !item);
+    }
+
 
     const footer = (
-        <ul className={`${activeSection === true ? "translate__footer" : ""} left__bottom__footer`}>
-            <li className='left__bottom__footer-nav'>
-                <FontAwesomeIcon icon={faCircleXmark} className='left__nav__top-icon' />
-                <span>
-                    Cancel
-                </span>
-            </li>
-            <li className='left__bottom__footer-nav'>
-                <FontAwesomeIcon icon={faGear} className='left__nav__top-icon' />
-                <span>
-                    Settings
-                </span>
-            </li>
-            <li className='left__bottom__footer-nav'>
-                <FontAwesomeIcon icon={faHandBackFist} className='left__nav__top-icon' />
-                <span>
-                    Hold
-                </span>
-            </li>
-            <li className='left__bottom__footer-nav'>
-            <FontAwesomeIcon icon={faPercent} className='left__nav__top-icon' />
-                <span>
-                    Discount
-                </span>
-            </li>
-            <li className='responsive__visible'></li>
-            <li className='left__bottom__footer-nav'>
-                <FontAwesomeIcon icon={faMoneyBill1Wave} className='left__nav__top-icon' />
-                <span>
-                    Pay Now
-                </span>
-            </li>
-        </ul>
+        <div className={`${activeSection === true ? "translate__footer" : ""} left__bottom__footer-parent`}>
+            <div className="pos__left__bottom-button">
+                <div onClick={()=> setActiveSection(!activeSection)} className="pos__left__bottom-button-area">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
+
+            <ul className={`left__bottom__footer`}>
+                <li className='left__bottom__footer-nav'>
+                    <FontAwesomeIcon icon={faCircleXmark} className='left__nav__top-icon' />
+                    <span>
+                        Cancel
+                    </span>
+                </li>
+                <li className='left__bottom__footer-nav'>
+                    <FontAwesomeIcon icon={faGear} className='left__nav__top-icon' />
+                    <span>
+                        Settings
+                    </span>
+                </li>
+                <li className='left__bottom__footer-nav'>
+                    <FontAwesomeIcon icon={faHandBackFist} className='left__nav__top-icon' />
+                    <span>
+                        Hold
+                    </span>
+                </li>
+                <li className='left__bottom__footer-nav'>
+                <FontAwesomeIcon icon={faPercent} className='left__nav__top-icon' />
+                    <span>
+                        Discount
+                    </span>
+                </li>
+                <li className='responsive__visible'></li>
+                <li className='left__bottom__footer-nav'>
+                    <FontAwesomeIcon icon={faMoneyBill1Wave} className='left__nav__top-icon' />
+                    <span>
+                        Pay Now
+                    </span>
+                </li>
+            </ul>
+        </div>
     )
 
     // console.log(state.isProductAvailable)
@@ -297,18 +314,27 @@ const POS = () => {
                         </nav>
 
                         <div className="pos__right__bottom">
-                            <div className="pos__right__bottom__navsection grid">
-                                <nav 
-                                    className="right__nav__bottom grid"
-                                    style={{
-                                        gridTemplateColumns: `repeat(${itemCount}, auto)`,
-                                    }}
-                                >
-                                    <DisplayNavItems createProductList={createProductList} navItems={navItems} itemCount={itemCount} />
-                                </nav>
+                            <div className="pos__right__bottom-content">
+                                <div className="pos__right__bottom__navsection grid">
+                                    <nav 
+                                        className="right__nav__bottom grid"
+                                        style={{
+                                            gridTemplateColumns: `repeat(${itemCount}, auto)`,
+                                        }}
+                                    >
+                                        <DisplayNavItems createProductList={createProductList} navItems={navItems} itemCount={itemCount} />
+                                    </nav>
 
-                                <div className="right__nav__bottom-menu">
-                                    <FontAwesomeIcon icon={faEllipsisVertical} />
+                                    <div className="right__nav__bottom-menu" onClick={()=>handleCategoryModal()}>
+                                        <FontAwesomeIcon icon={faEllipsisVertical} />
+                                    </div>
+                                </div>
+                                <div className="pos__right__bottom-button">
+                                    <div onClick={()=> setActiveSection(!activeSection)} className="pos__right__bottom-button-area">
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                    </div>
                                 </div>
                             </div>
 
@@ -329,14 +355,28 @@ const POS = () => {
                 </div>
             {/* </div> */}
 
-            <div onClick={()=> setActiveSection(!activeSection)} className="toggle__view">
+            {/* <div onClick={()=> setActiveSection(!activeSection)} className="toggle__view">
                 <FontAwesomeIcon icon={faAnglesUp} className='angle__up' />
-            </div>
+            </div> */}
         </div>
 
         {
             (state.isProductAvailable !==null ? posModal : <div></div>)
         }
+        
+        <div 
+            className='category__modal'
+            style={{
+                display: `${categoryModalActive ? 'block' : 'none'}`,
+              }}
+        ></div>
+        
+        <CategoryModal 
+            createProductList={createProductList} 
+            navItems={navItems} 
+            categoryModalActive={categoryModalActive} 
+            handleCategoryModal={handleCategoryModal} 
+        />
     </div>
   )
 }

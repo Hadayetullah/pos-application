@@ -1,5 +1,7 @@
 import * as actionTypes from "./actionTypes";
+import { Products } from "./data/Products";
 const productState = {
+  allProductsData: [],
   products: [],
   currentOrder: [],
   isProductAvailable: null,
@@ -7,6 +9,28 @@ const productState = {
   totalPrice: 0,
 };
 
+const formatProductListObj = (item) => {
+  return item.data.map((childItem) => ({
+    title: item.title,
+    category: item.category,
+    subtitle: item.subtitle,
+    subcategory: item.subcategory,
+    productTitle: childItem.title,
+    price: childItem.price,
+    img: childItem.img,
+    qty: childItem.qty,
+    stock: childItem.stock,
+  }));
+};
+
+// const normalizeAllData = () => {
+//   let dataList = Products.flatMap((item) => formatProductListObj(item));
+//   console.log(dataList);
+//   return {
+//     ...productState,
+//     allProductsData: dataList,
+//   };
+// };
 export const reducer = (state = productState, action) => {
   const getItem = (orderItem) => {
     let getItemFromProductList = state.products.find(
@@ -55,11 +79,45 @@ export const reducer = (state = productState, action) => {
 
   // SWITCH CASE
   switch (action.type) {
+    // case actionTypes.NORMALIZE_ALL_DATA:
+    //   console.log(action.payload);
+    //   return {
+    //     ...state,
+    //     allProductsData: action.payload,
+    //   };
+
     case actionTypes.CRATE_PRODUCT_LIST:
-      return {
-        ...state,
-        products: action.payload,
-      };
+      if (state.allProductsData.length > 0) {
+        if (action.payload === "all") {
+          return {
+            ...state,
+            products: state.allProductsData,
+          };
+        } else {
+          let categoryData = state.allProductsData.filter(
+            (item) => item.category === action.payload
+          );
+          // let productList = categoryData.flatMap((item) =>
+          //   formatProductListObj(item)
+          // );
+
+          return {
+            ...state,
+            products: categoryData,
+          };
+        }
+      } else {
+        let productList = Products.flatMap((item) =>
+          formatProductListObj(item)
+        );
+        // let normalizeData = formatProductListObj(productList);
+        // console.log(productList);
+        return {
+          ...state,
+          allProductsData: productList,
+          products: productList,
+        };
+      }
 
     case actionTypes.CURRENT_ORDER:
       let orderItem = action.payload;
@@ -68,10 +126,13 @@ export const reducer = (state = productState, action) => {
       if (getItemFromProductList.stock > 0) {
         const productObjIndex = getProductObjIndex(orderItem);
 
-        let increaseOrderQty = getItemFromProductList;
+        let increaseOrderQty = getObjeFromCart(orderItem);
         let increaseQty = getItemFromProductList;
         increaseQty.stock = increaseQty.stock - 1;
 
+        // console.log("Before: ", getItemFromProductList);
+
+        // console.log("After: ", increaseOrderQty.qty);
         if (getCurrentOrderIndex(orderItem) !== -1) {
           increaseOrderQty.qty = increaseOrderQty.qty + 1;
           return {
@@ -166,12 +227,14 @@ export const reducer = (state = productState, action) => {
 
     case actionTypes.INCREASE_CART_ITEM:
       let increasableItem = action.payload;
+
+      // console.log(increasableItem);
       let getIncreasableItemFromProductList = getItem(increasableItem);
 
       if (getIncreasableItemFromProductList.stock > 0) {
         const productObjIndex = getProductObjIndex(increasableItem);
 
-        let increaseOrderQty = getIncreasableItemFromProductList;
+        let increaseOrderQty = getObjeFromCart(increasableItem);
         let increaseQty = getIncreasableItemFromProductList;
         increaseQty.stock = increaseQty.stock - 1;
 
