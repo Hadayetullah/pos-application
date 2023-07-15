@@ -1,19 +1,18 @@
 import * as actionTypes from "./actionTypes";
-import { Products } from "./data/Products";
 
-const formatProductListObj = (item) => {
-  return item.data.map((childItem) => ({
-    title: item.title,
-    category: item.category,
-    subtitle: item.subtitle,
-    subcategory: item.subcategory,
-    productTitle: childItem.title,
-    price: childItem.price,
-    img: childItem.img,
-    qty: childItem.qty,
-    stock: childItem.stock,
-  }));
-};
+// const formatProductListObj = (item) => {
+//   return item.data.map((childItem) => ({
+//     title: item.title,
+//     category: item.category,
+//     subtitle: item.subtitle,
+//     subcategory: item.subcategory,
+//     productTitle: childItem.title,
+//     price: childItem.price,
+//     img: childItem.img,
+//     qty: childItem.qty,
+//     stock: childItem.stock,
+//   }));
+// };
 
 export const createProductList = (name) => {
   return {
@@ -68,4 +67,9 @@ export const decreaseCartItem = (item) => ({
 export const increaseCartItem = (item) => ({
   type: actionTypes.INCREASE_CART_ITEM,
   payload: item,
+});
+
+export const selectedData = (data) => ({
+  type: actionTypes.SELECTED_SEARCHED_DATA,
+  payload: data,
 });

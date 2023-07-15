@@ -1,5 +1,6 @@
 import * as actionTypes from "./actionTypes";
 import { Products } from "./data/Products";
+import { filterData } from "./posActionCreatorsFunc";
 const productState = {
   allProductsData: [],
   products: [],
@@ -118,6 +119,12 @@ export const reducer = (state = productState, action) => {
           products: productList,
         };
       }
+
+    case actionTypes.SELECTED_SEARCHED_DATA:
+      return {
+        ...state,
+        products: [action.payload],
+      };
 
     case actionTypes.CURRENT_ORDER:
       let orderItem = action.payload;
@@ -268,6 +275,10 @@ export const reducer = (state = productState, action) => {
           isProductAvailable: "Stock Unavilable",
         };
       }
+
+    // case actionTypes.SEARCH_DATA:
+    // console.log(action.payload);
+    // const filterData = filterData(state.products);
 
     default:
       return state;

@@ -1,5 +1,5 @@
 .item__details {
-	width: 100%;
+	max-width: 200px;
 	padding: 5px;
 	border: 1px solid #999;
 	border-radius: 3px;

@@ -1,5 +1,3 @@
-
-
 import { navItems } from '../../redux/data/Products'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { 
@@ -37,11 +35,13 @@ import {
     currentOrder, 
     decreaseCartItem, 
     increaseCartItem, 
-    removeItem 
+    removeItem, 
+    selectedData
 } from '../../redux/actionCreators'
 
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import SearchProducts from './posChilds/search/SearchProducts'
 
 
 const POS = () => {
@@ -103,6 +103,14 @@ const POS = () => {
         }
     }
 
+    const handleCategoryModal = () => {
+        setCategoryModalActive(item=> !item);
+    }
+
+    const handleSelectData = (option) => {
+        dispatch(selectedData(option))
+    }
+
     const posModal = (
         <div className="pos__modal">
             <div className="pos__modal-content">
@@ -115,11 +123,7 @@ const POS = () => {
                 <button className='pos__modal-ok' onClick={()=> dispatch(closeModal())}>OK</button>
             </div>
         </div>
-    )
-
-    const handleCategoryModal = () => {
-        setCategoryModalActive(item=> !item);
-    }
+    );
 
 
     const footer = (
@@ -309,7 +313,8 @@ const POS = () => {
                     <div className={`pos__right ${activeSection === true ? "pos__right-active": ""}`}>
                         <nav className="right__nav__top">
                             <FontAwesomeIcon icon={faMagnifyingGlass} className="right__nav__top-search" />
-                            <input type="text" className="right__nav__top-input" placeholder='Search Products...' />
+                            {/* <input onChange={(e)=>handelSearch(e)} type="text" className="right__nav__top-input" placeholder='Search Products...' /> */}
+                            <SearchProducts data={state.products} handleSelectData={handleSelectData} />
                             <FontAwesomeIcon icon={faQrcode} className="right__nav__top-qr" />
                         </nav>
 
