@@ -5,15 +5,6 @@ const SearchProducts = ({data, handleSelectData}) => {
     const [searchQuery, setSearchQuery] = useState('');
     const [filteredOptions, setFilteredOptions] = useState([]);
   
-    // useEffect(() => {
-    //   if(searchQuery.trim() !== ""){
-    //     const filtered = data.filter(option =>
-    //         option.productTitle.toLowerCase().includes(searchQuery.toLowerCase().trim())
-    //     );
-    //     setFilteredOptions(filtered);
-    //   }
-    // }, [searchQuery]);
-  
     const handleSelect = option => {
       handleSelectData(option);
       setSearchQuery('');

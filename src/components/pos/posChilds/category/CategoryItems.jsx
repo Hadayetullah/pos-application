@@ -2,7 +2,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faDollarSign } from '@fortawesome/free-solid-svg-icons'
 
-import "./CategoryItems.css"
+import './CategoryItems.css';
 
 const CategoryItems = ({item, currentOrder}) => {
 

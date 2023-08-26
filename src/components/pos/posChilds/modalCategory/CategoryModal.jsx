@@ -1,7 +1,7 @@
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import './DisplayNavItems.css'
+// import './DisplayNavItems.css'
 import { useDispatch } from 'react-redux';
 
 const CategoryModal = ({createProductList, navItems, categoryModalActive, handleCategoryModal}) => {

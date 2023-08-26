@@ -1,4 +1,4 @@
-import * as actionTypes from "./actionTypes";
+import * as actionTypes from "./posActionTypes";
 
 // const formatProductListObj = (item) => {
 //   return item.data.map((childItem) => ({
@@ -19,25 +19,6 @@ export const createProductList = (name) => {
     type: actionTypes.CRATE_PRODUCT_LIST,
     payload: name,
   };
-  // if (name === "all") {
-  //   let productList = Products.flatMap((item) => item.data);
-  //   let productList = Products.flatMap((item) => formatProductListObj(item));
-
-  //   return {
-  //     type: actionTypes.CRATE_PRODUCT_LIST,
-  //     payload: productList,
-  //   };
-  // } else {
-  //   let categoryData = Products.filter((item) => item.category === name);
-  //   let productList = categoryData.flatMap((item) =>
-  //     formatProductListObj(item)
-  //   );
-
-  //   return {
-  //     type: actionTypes.CRATE_PRODUCT_LIST,
-  //     payload: productList,
-  //   };
-  // }
 };
 
 export const currentOrder = (product) => {
@@ -72,4 +53,8 @@ export const increaseCartItem = (item) => ({
 export const selectedData = (data) => ({
   type: actionTypes.SELECTED_SEARCHED_DATA,
   payload: data,
+});
+
+export const cancelOrder = () => ({
+  type: actionTypes.CANCEL_ORDER,
 });
