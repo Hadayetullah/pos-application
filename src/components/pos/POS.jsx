@@ -24,10 +24,10 @@ import {
 import { faCircleXmark, faPenToSquare, faTrashCan } from '@fortawesome/free-regular-svg-icons'
 // import { faTwitter, faFontAwesome } from '@fortawesome/free-brands-svg-icons'
 
-import DisplayNavItems from './posChilds/navItem/DisplayNavItems'
-import CategoryItems from './posChilds/category/CategoryItems'
-import CurrentOrderList from './posChilds/orderList/CurrentOrderList'
-import CategoryModal from './posChilds/modalCategory/CategoryModal'
+import DisplayNavItems from './posChildComponents/navItem/DisplayNavItems'
+import CategoryItems from './posChildComponents/category/CategoryItems'
+import CurrentOrderList from './posChildComponents/orderList/CurrentOrderList'
+import CategoryModal from './posChildComponents/modalCategory/CategoryModal'
 import MobileResponsivePopupMsg from './posExampleShowcase/mobileResponsiveView/MobileResponsivePopupMsg'
 
 import { 
@@ -43,8 +43,9 @@ import {
 
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import SearchProducts from './posChilds/search/SearchProducts'
-import AddCustomer from './posChilds/addCustomer/AddCustomer'
+import SearchProducts from './posChildComponents/search/SearchProducts'
+import AddCustomer from './posChildComponents/addCustomer/AddCustomer'
+import HoldOrder from './posChildComponents/holdOrder/HoldOrder'
 import { handleResponsiveMsg } from '../../redux/forDevelopment/devActionCreators'
 
 
@@ -54,6 +55,7 @@ const POS = () => {
     const [activeSection, setActiveSection] = useState(false);
     const [categoryModalActive, setCategoryModalActive] = useState(false);
     const [activeCustomerModal, setActiveCustomerModal] = useState(false);
+    const [holdOrder, setHoldOrder] = useState(false);
 
     const [height, setHeight] = useState(window.innerHeight);
     
@@ -91,6 +93,10 @@ const POS = () => {
 
     const handleActiveCustomerModal = () => {
         setActiveCustomerModal(prev => !prev);
+    }
+
+    const handleHoldOrderModal = () => {
+        setHoldOrder(prev => !prev);
     }
 
 
@@ -158,39 +164,43 @@ const POS = () => {
                 </div>
             </div>
 
-            <ul className={`left__bottom__footer`}>
-                <li className='left__bottom__footer-nav' onClick={()=> dispatch(cancelOrder())}>
+            <div className={`left__bottom__footer`}>
+                <button className='left__bottom__footer-nav' onClick={()=> dispatch(cancelOrder())}>
                     <FontAwesomeIcon icon={faCircleXmark} className='left__nav__top-icon' />
                     <span>
                         Cancel
                     </span>
-                </li>
-                <li className='left__bottom__footer-nav'>
+                </button>
+                <button className='left__bottom__footer-nav'>
                     <FontAwesomeIcon icon={faGear} className='left__nav__top-icon' />
                     <span>
                         Settings
                     </span>
-                </li>
-                <li className='left__bottom__footer-nav'>
+                </button>
+                <button 
+                    className='left__bottom__footer-nav' 
+                    onClick={()=> setHoldOrder(!holdOrder)}
+                    disabled={state.pos.totalPrice === 0 ? true : false}
+                >
                     <FontAwesomeIcon icon={faHandBackFist} className='left__nav__top-icon' />
                     <span>
                         Hold
                     </span>
-                </li>
-                <li className='left__bottom__footer-nav'>
-                <FontAwesomeIcon icon={faPercent} className='left__nav__top-icon' />
+                </button>
+                <button className='left__bottom__footer-nav' disabled={true}>
+                    <FontAwesomeIcon icon={faPercent} className='left__nav__top-icon' />
                     <span>
                         Discount
                     </span>
-                </li>
-                <li className='responsive__visible'></li>
-                <li className='left__bottom__footer-nav'>
+                </button>
+                <button className='responsive__visible' disabled></button>
+                <button className='left__bottom__footer-nav' disabled>
                     <FontAwesomeIcon icon={faMoneyBill1Wave} className='left__nav__top-icon' />
                     <span>
                         Pay Now
                     </span>
-                </li>
-            </ul>
+                </button>
+            </div>
         </div>
     )
 
@@ -428,6 +438,11 @@ const POS = () => {
         {/* Modal - Adding Customer */}
         {
             activeCustomerModal && <AddCustomer handleActiveCustomerModal={handleActiveCustomerModal} />
+        }
+
+        {/* Modal - Holding Order */}
+        {
+            holdOrder && <HoldOrder handleHoldOrderModal={handleHoldOrderModal} />
         }
     </div>
   )

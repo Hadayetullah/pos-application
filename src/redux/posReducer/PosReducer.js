@@ -279,6 +279,8 @@ export const PosReducer = (state = productState, action) => {
       return {
         ...state,
         currentOrder: [],
+        totalQty: 0,
+        totalPrice: 0,
       };
     // case actionTypes.SEARCH_DATA:
     // console.log(action.payload);
