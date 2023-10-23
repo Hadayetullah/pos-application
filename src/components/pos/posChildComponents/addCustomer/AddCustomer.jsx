@@ -1,11 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './AddCustomer.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import CustomSelect from './CustomSelect';
 import CustomerInformationForm from './CustomerInformationForm';
+import ShippingAddressForm from './ShippingAddressForm';
 
 const AddCustomer = ({handleActiveCustomerModal}) => {
+
+  const [selectedForm, setSelectedForm] = useState(1); 
+  const activeButtonColor = "#B6D1CB";
   return (
     <div className='add__customer'>
         <div className="add__customer__overflow">
@@ -17,10 +21,25 @@ const AddCustomer = ({handleActiveCustomerModal}) => {
               <hr />
               <div className="add__customer__form">
                 <div className="add__customer__middle__buttons">
-                  <button>Customer Information</button>
-                  <button>Shipping Address</button>
+                  <button 
+                    style={{
+                      backgroundColor: `${selectedForm === 1 ? activeButtonColor : "transparent"}`
+                    }}
+                    onClick={()=> setSelectedForm(1)}
+                  >
+                    Customer Information
+                  </button>
+
+                  <button 
+                    style={{
+                      backgroundColor: `${selectedForm === 2 ? activeButtonColor : "transparent"}`
+                    }}
+                    onClick={()=> setSelectedForm(2)}
+                  >
+                    Shipping Address
+                  </button>
                 </div>
-                <CustomerInformationForm />
+                { selectedForm === 1 ? <CustomerInformationForm /> : <ShippingAddressForm /> }
               </div>
               
           </div>
