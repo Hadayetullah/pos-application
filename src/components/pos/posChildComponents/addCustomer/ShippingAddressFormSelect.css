@@ -16,24 +16,22 @@
 }
   
 .shipping__address__options {
-	position: absolute;
-	top: -555%;
-	left: 0;
-	width: 100%;
-	background-color: #fff;
-	border: 1px solid #ccc;
-	border-bottom: none;
-	border-radius: 4px 4px 0 0;
-	list-style: none;
-	cursor: pointer;
-	font-size: 15px;
-	font-weight: 300;
-	color: #6d6b6b;
-	height: 204px;
-	list-style: none;
-	height: 200px;
-	overflow-y: auto;
-	border-bottom: none;
+  position: absolute;
+  top: -565%;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px 4px 0 0;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 300;
+  color: #6d6b6b;
+  height: 204px;
+  list-style: none;
+  height: 200px;
+  overflow-y: auto;
+  border-bottom: none;
 }
   
 .shipping__address__option {

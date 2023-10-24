@@ -226,32 +226,32 @@ const POS = () => {
                         }}>
                             <nav className="left__nav__top grid">
                                 <FontAwesomeIcon icon={faBars} className="pos__left__bar" />
-                                <ul className="left__nav__top-items">
-                                    <li className='left__nav__top-item'>
+                                <div className="left__nav__top-items">
+                                    <button className='left__nav__top-item'>
                                         <FontAwesomeIcon icon={faFileLines} className='left__nav__top-icon' />
                                         <span>
                                             Note
                                         </span>
-                                    </li>
-                                    <li className='left__nav__top-item'>
+                                    </button>
+                                    <button className='left__nav__top-item'>
                                         <FontAwesomeIcon icon={faTruck} className='left__nav__top-icon' />
                                         <span>
                                             Shipping
                                         </span>
-                                    </li>
-                                    <li className='left__nav__top-item'>
+                                    </button>
+                                    <button className='left__nav__top-item'>
                                     <FontAwesomeIcon icon={faLayerGroup} className='left__nav__top-icon' />
                                         <span>
                                             Hold Orders
                                         </span>
-                                    </li>
-                                    <li className='left__nav__top-item'>
+                                    </button>
+                                    <button className='left__nav__top-item'>
                                         <FontAwesomeIcon icon={faCirclePlus} className='left__nav__top-icon' />
                                         <span>
                                             New Item
                                         </span>
-                                    </li>
-                                </ul>
+                                    </button>
+                                </div>
                             </nav>
 
                             <div className="left__nav__bottom-bg">

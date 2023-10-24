@@ -168,6 +168,7 @@ img {
 	align-items: center;
 	background-color: #fff;
 	height: 60px;
+    /* background-color: var(--first-color); */
 }
 .pos__left__bar {
 	font-size: 25px;
@@ -180,11 +181,18 @@ img {
 	gap: 1px;
 }
 .left__nav__top-item {
-	display: inline-flex;
-	align-items: center;
-	flex-direction: column-reverse;
-	background-color: #fff;
-	color: #6F6F6F;
+    display: inline-flex;
+    align-items: center;
+    flex-direction: column-reverse;
+    /* background-color: #fff; */
+    color: #6F6F6F;
+    border: none;
+    cursor: pointer;
+    background-color: var(--first-color-second);
+    height: 50px;
+    /* align-content: center; */
+    justify-content: center;
+    border-radius: 4px;
 }
 .left__nav__top-item span {
 	font-size: 13px;
@@ -192,6 +200,7 @@ img {
 }
 .left__nav__top-icon {
 	font-size: 25px;
+    padding-bottom: 5px;
 }
 
 
@@ -812,18 +821,18 @@ button:disabled{
         min-width: 100%;
     }
     .left__nav__top-item {
-        background-color: var(--first-color-second);
         color: #6F6F6F;
         display: inline-flex;
         flex-direction: row;
         justify-items: center;
         justify-content: center;
         align-items: center;
-        border-radius: 3px;
+        /* border-radius: 4px; */
         padding: 0 13px;
-		font-weight: 700;
-		height: 35px;
-		column-gap: .5rem;
+        font-weight: 700;
+        height: 40px;
+        column-gap: .5rem;
+        background-color: var(--first-color-second);
     }
     .left__nav__top-item span {
         font-size: 17px;
@@ -832,6 +841,7 @@ button:disabled{
     .left__nav__top-icon {
         color: #676767;
         font-size: 30px;
+        padding-bottom: initial;
     }
     .left__nav__bottom {
         margin: 10px;
@@ -1165,14 +1175,13 @@ button:disabled{
         min-width: 100%;
     }
     .left__nav__top-item {
-        background-color: var(--first-color-second);
         color: #6F6F6F;
         display: inline-flex;
         flex-direction: row;
         justify-items: center;
         justify-content: center;
         align-items: center;
-        border-radius: 3px;
+        /* border-radius: 3px; */
         padding: 0;
         /* font-weight: 700; */
         height: 35px;
