@@ -1,3 +1,4 @@
+import { Link, Outlet } from 'react-router-dom'
 import { navItems } from '../../redux/data/Products'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { 
@@ -51,6 +52,7 @@ import { handleResponsiveMsg } from '../../redux/forDevelopment/devActionCreator
 
 const POS = () => {
 
+    const [leftTopNavActiveModal, setLeftTopNavActiveModal] = useState(null); 
     const [itemCount, setItemCount] = useState(0);
     const [activeSection, setActiveSection] = useState(false);
     const [categoryModalActive, setCategoryModalActive] = useState(false);
@@ -90,6 +92,10 @@ const POS = () => {
         handleResize();
     },[itemCount])
 
+
+    const handleLeftTopNavActiveModal = (activeModal) => {
+        setLeftTopNavActiveModal(activeModal);
+    }
 
     const handleActiveCustomerModal = () => {
         setActiveCustomerModal(prev => !prev);
@@ -261,10 +267,11 @@ const POS = () => {
                                         <span>No active customer!</span>
                                     </div>
 
-                                    <FontAwesomeIcon icon={faCirclePlus} 
-                                        className='left__nav__bottom-icon' 
-                                        onClick={()=> setActiveCustomerModal(!activeCustomerModal)}
-                                    />
+                                    <Link to={`add-customer`}>
+                                        <FontAwesomeIcon icon={faCirclePlus} 
+                                            className='left__nav__bottom-icon' 
+                                        />
+                                    </Link>
                                 </nav>
                             </div>
 
@@ -436,9 +443,13 @@ const POS = () => {
         />
 
         {/* Modal - Adding Customer */}
-        {
+        {/* {
             activeCustomerModal && <AddCustomer handleActiveCustomerModal={handleActiveCustomerModal} />
-        }
+        } */}
+        {/* Test */}
+        <div>
+            <Outlet />
+        </div>
 
         {/* Modal - Holding Order */}
         {
