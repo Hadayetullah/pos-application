@@ -267,7 +267,7 @@ const POS = () => {
                                         <span>No active customer!</span>
                                     </div>
 
-                                    <Link to={`add-customer`}>
+                                    <Link to={`pos/add-customer`}>
                                         <FontAwesomeIcon icon={faCirclePlus} 
                                             className='left__nav__bottom-icon' 
                                         />
