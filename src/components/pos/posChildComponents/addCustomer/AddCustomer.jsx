@@ -1,14 +1,40 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './AddCustomer.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import CustomSelect from './CustomSelect';
-import { Link, Navigate, Outlet, redirect, useNavigate } from 'react-router-dom';
+import { Link, NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom';
 
 const AddCustomer = () => {
 
-  const [selectedForm, setSelectedForm] = useState(1); 
-  const activeButtonColor = "#B6D1CB";
+  const documentData = [
+    {
+      buttonTitle: "Customer Information",
+      routeName: "customer-information",
+    },
+    {
+      buttonTitle: "Shipping Address",
+      routeName: "shipping-address"
+    },
+  ];
+
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const [selectedForm, setSelectedForm] = useState(null);
+
+  useEffect(()=> {
+    const pathNameSegments = location.pathname.split('/');
+    const routeName = pathNameSegments[pathNameSegments.length - 1];
+    if(routeName === "add-customer") {
+      navigate(documentData[0].routeName);
+      setSelectedForm(documentData[0].routeName)
+    } else {
+      navigate(routeName);
+      setSelectedForm(routeName)
+    }
+  },[]);
+
 
   return (
     <div className='add__customer'>
@@ -21,26 +47,23 @@ const AddCustomer = () => {
               <hr />
               <div className="add__customer__form">
                 <div className="add__customer__middle__buttons">
-                  <Link to={`customer-information`}
-                    style={{
-                      backgroundColor: `${selectedForm === 1 ? activeButtonColor : "transparent"}`
-                    }}
-                    onClick={()=> setSelectedForm(1)}
-                  >
-                    Customer Information
-                  </Link>
-
-                  <Link to={`shipping-address`}
-                    style={{
-                      backgroundColor: `${selectedForm === 2 ? activeButtonColor : "transparent"}`
-                    }}
-                    onClick={()=> setSelectedForm(2)}
-                  >
-                    Shipping Address
-                  </Link>
+                  {
+                    documentData.map((data, i) => {
+                      return(
+                        <NavLink key={i}
+                          className={`add__customer__middle__button 
+                            ${selectedForm === data.routeName ? "add__customer__active__form" : ""}`
+                          } 
+                          to={ data.routeName }
+                          onClick={()=> setSelectedForm(data.routeName)}
+                        >
+                          { data.buttonTitle }
+                        </NavLink>
+                      )
+                    })
+                  }
                 </div>
 
-                {selectedForm === 1 && <Navigate to={`customer-information`} replace={true} />}
                 <Outlet />
               </div>
               

@@ -56,7 +56,7 @@
     height: 50px;
     box-shadow: 0px 2px 4px -2px;
 }
-.add__customer__middle__buttons a {
+.add__customer__middle__button {
     border: none;
     width: 100%;
     font-size: 15px;
@@ -67,6 +67,9 @@
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
+}
+.add__customer__middle__button.add__customer__active__form {
+	background-color: #B6D1CB;
 }
 .shipping__address__form {
 	position: relative;
